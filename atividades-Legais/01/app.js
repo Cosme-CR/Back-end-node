@@ -10,8 +10,7 @@
  * meses ou em anos,
  * A fórmula para calcular o montante final M com juros compostos é:
 
-M = C*(1+i)
-n
+M = C*(1+i)elevado a n
 
 Onde:
 C é o capital inicial.
@@ -53,6 +52,7 @@ entradaDeDados.question("Digite o nome do cliente : ", function (nomecliente) {
                     //coleta de tempo
                     entradaDeDados.question("Digite em quantas vezes sera o pagamento : ", function(temp){
                         let tempo = temp
+                        //tratamento verifica se esta vazio
                         if(nomeProduto == "" || nomeCliente == "" || taxaJuros == ""|| select == "" || tempo == ""){
                             console.log("ERRO: contem campo vazio ")
                         }else if(isNaN(nomeCliente) || isNaN(nomeProduto) || !isNaN(taxaJuros) || !isNaN(selecao) ||!isNaN(tempo) || !isNaN(valor)){
