@@ -50,16 +50,6 @@ entradaDeDados.question("Digite o primeiro valor : ", function (numero1) {
 })
 
 
- 
-
-
-
-
-
-
-
-
-
 
 
 
