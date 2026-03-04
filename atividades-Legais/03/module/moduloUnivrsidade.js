@@ -31,73 +31,60 @@ function calculoMedia(n1,n2,n3,n4){
     return media 
 
 }
-
-function geral(medi,nomProfe,nomAluno,sexoProf, sexoAlun,nomCurso, materia,n1,n2,n3,n4){
-    let media         = Number(medi)
-    let nomeProfessor = nomProfe
-    let nomeAluno     = nomAluno
-    let sexoProfessor = sexoProfe(sexoProf)
-    let sexoAluno     = sexaluno(sexoAlun)
-    let nomeCurso     = nomCurso
-    let classificacao = classificaaluno(medi)
-
+function geral(medi, nomProfe, nomAluno, sexoProf, sexoAlun, nomCurso, materia, n1, n2, n3, n4) {
+    let media = Number(medi);
+    let nomeProfessor = nomProfe;
+    let nomeAluno = nomAluno;
     
+    let sexoProfessor = sexoProfe(sexoProf);
+    let sexoAluno = sexaluno(sexoAlun);
+    let nomeCurso = nomCurso;
+    let classificacao = classificaaluno(media);
 
-    switch(true){
-        case (classificacao == "RECUPERAÇÂO"):
-            
-            // coleta nome do cliente
-            entradaDeDados.question("Digite a nota do Exame: ", function(notaexa){
-                let nota = Number(notaexa) ;
+    switch (classificacao) {
+        case "RECUPERAÇÃO":
+            entradaDeDados.question("Digite a nota do Exame: ", function(notaexa) {
+                let nota = Number(notaexa);
 
-                if(nota =>60 && media >= 60 ){
-                    console.log(sexoAluno + nomeAluno + " foi APROVADO na Disciplina " + materia)
-                    console.log("Curso " + nomeCurso)
-
-                    console.log("notas: "+n1+" ,"+n2+" ,"+n3+" ,"+n4)
-            
-                    console.log("Media Final: " + media)
-                    console.log("Media final do Exame: Nao Nescessario")
+                if (notaexa != "" && !isNaN(notaexa) && nota >= 0 && nota <= 100) {
+                    let mediaFinal = ((nota + media) / 2);
+                    let status = mediaFinal >= 60 ? "APROVADO" : "REPROVADO";
+    
+                    console.log(`${sexoAluno} ${nomeAluno} foi ${status} na Disciplina ${materia}`);
+                    console.log("Curso: " + nomeCurso);
+                    console.log(`Notas: ${n1}, ${n2}, ${n3}, ${n4}`);
+                    console.log("Média Inicial: " + media);
+                    console.log("Média Final (com Exame): " + mediaFinal);
                 }else{
-                    console.log(sexoAluno + nomeAluno + " foi REPROVADO na Disciplina " + materia)
-                    console.log("Curso " + nomeCurso)
-
-                    console.log("notas: "+n1+" ,"+n2+" ,"+n3+" ,"+n4)
-            
-                    console.log("Media Final: " + media)
-                    console.log("Media final do Exame: Nao Nescessario")
+                    console.log("nota do exame invalido")
                 }
-            )}
 
+
+            });
             break;
-        case (classificacao == "APROVADO"):
-            console.log(sexoAluno + nomeAluno + " foi " + classificacao + " na Disciplina " + materia)
-            console.log("Curso " + nomeCurso)
 
-            console.log("notas: "+n1+" ,"+n2+" ,"+n3+" ,"+n4)
-            
-            console.log("Media Final: " + media)
-            console.log("Media final do Exame: Nao Nescessario")
+        case "APROVADO":
+            exibirRelatorio(sexoAluno, nomeAluno, "APROVADO", materia, nomeCurso, n1, n2, n3, n4, media, "Não Necessário");
             break;
-        case(classificacao == "REPROVADO"):
-            console.log(sexoAluno + nomeAluno + " foi " + classificacao + " na Disciplina " + materia)
-            console.log("Curso " + nomeCurso)
 
-            console.log("notas: "+n1+" ,"+n2+" ,"+n3+" ,"+n4)
-            console.log("Media Final: " + media)
-            console.log("Media final do Exame: Nao Apto")
+        case "REPROVADO":
+            exibirRelatorio(sexoAluno, nomeAluno, "REPROVADO", materia, nomeCurso, n1, n2, n3, n4, media, "Não Apto");
             break;
-        default:
+    }
+}
 
-        }
-
-
+// Função auxiliar para evitar repetição de código 
+function exibirRelatorio(sexo, nome, status, materia, curso, n1, n2, n3, n4, media, exame) {
+    console.log(`${sexo} ${nome} foi ${status} na Disciplina ${materia}`);
+    console.log("Curso: " + curso);
+    console.log(`Notas: ${n1}, ${n2}, ${n3}, ${n4}`);
+    console.log("Média Final: " + media);
+    console.log("Situação do Exame: " + exame);
 }
 
 
-
 function classificaaluno(medi){
-    let media Number(medi)
+    let media = Number(medi)
     let staus
 
       
@@ -106,7 +93,7 @@ function classificaaluno(medi){
             staus = "REPROVADO"
             break;
         case (media >= 50 && media <= 69):
-            staus = "RECUPERAÇÂO"
+            staus = "RECUPERAÇÃO"
             break;
         case (media >=70):
             staus = "APROVADO"
@@ -141,8 +128,8 @@ function sexaluno(tipo){
 function sexoProfe(tipo){
     let retorno
 
-    if(tipo == "masculino"{
-        retorno = "Professora "
+    if(tipo == "masculino"){
+        retorno = "Professor "
 
     }else{
         retorno = "Professora: "
@@ -151,99 +138,4 @@ function sexoProfe(tipo){
 
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-function CalculoFatorial(numero){
-    let num = Number(numero)
-    let resultado = 1
-
-    for(let cont = num; cont>0;cont--){
-
-        resultado *=cont
-    }
-    
-    return resultado
-}
-
-console.log(CalculoFatorial(5))
 
