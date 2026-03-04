@@ -6,6 +6,14 @@
 **************************************************************************/
 
 
+// importe da biblioteca
+const readline = require('readline');
+
+// cria objeto de entrada de dados 
+const entradaDeDados = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
  
 
 
@@ -24,8 +32,8 @@ function calculoMedia(n1,n2,n3,n4){
 
 }
 
-function geral(medi,nomProfe,nomAluno,sexoProf, sexoAlun,nomCurso, materia){
-    let media         = medi
+function geral(medi,nomProfe,nomAluno,sexoProf, sexoAlun,nomCurso, materia,n1,n2,n3,n4){
+    let media         = Number(medi)
     let nomeProfessor = nomProfe
     let nomeAluno     = nomAluno
     let sexoProfessor = sexoProfe(sexoProf)
@@ -38,35 +46,46 @@ function geral(medi,nomProfe,nomAluno,sexoProf, sexoAlun,nomCurso, materia){
     switch(true){
         case (classificacao == "RECUPERAÇÂO"):
             
+            // coleta nome do cliente
+            entradaDeDados.question("Digite a nota do Exame: ", function(notaexa){
+                let nota = Number(notaexa) ;
 
+                if(nota =>60 && media >= 60 ){
+                    console.log(sexoAluno + nomeAluno + " foi APROVADO na Disciplina " + materia)
+                    console.log("Curso " + nomeCurso)
 
+                    console.log("notas: "+n1+" ,"+n2+" ,"+n3+" ,"+n4)
+            
+                    console.log("Media Final: " + media)
+                    console.log("Media final do Exame: Nao Nescessario")
+                }else{
+                    console.log(sexoAluno + nomeAluno + " foi REPROVADO na Disciplina " + materia)
+                    console.log("Curso " + nomeCurso)
 
+                    console.log("notas: "+n1+" ,"+n2+" ,"+n3+" ,"+n4)
+            
+                    console.log("Media Final: " + media)
+                    console.log("Media final do Exame: Nao Nescessario")
+                }
+            )}
 
             break;
         case (classificacao == "APROVADO"):
             console.log(sexoAluno + nomeAluno + " foi " + classificacao + " na Disciplina " + materia)
             console.log("Curso " + nomeCurso)
 
+            console.log("notas: "+n1+" ,"+n2+" ,"+n3+" ,"+n4)
             
             console.log("Media Final: " + media)
             console.log("Media final do Exame: Nao Nescessario")
-
-            
-
-
             break;
-        case (classificacao == "REPROVADO"):
-             console.log(sexoAluno + nomeAluno + " foi " + classificacao + " na Disciplina " + materia)
+        case(classificacao == "REPROVADO"):
+            console.log(sexoAluno + nomeAluno + " foi " + classificacao + " na Disciplina " + materia)
             console.log("Curso " + nomeCurso)
 
-            
+            console.log("notas: "+n1+" ,"+n2+" ,"+n3+" ,"+n4)
             console.log("Media Final: " + media)
             console.log("Media final do Exame: Nao Apto")
-
-            
-            
-
-
             break;
         default:
 

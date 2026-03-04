@@ -21,18 +21,23 @@ const entradaDeDados = readline.createInterface({
 
 
 
-function coleta(){
 
-    let teste
-    entradaDeDados.question("Digite o nome do cliente : ", function (nomecliente){
-        let nomeCliente = nomecliente;
-        teste = nomeCliente
-    )}
-    return tes
+// Função para coletar dados
+function coleta() {
+    return new Promise((resolve) => { // Encapsulando a função callback dentro do Promise
+        entradaDeDados.question("Digite: ", (dado) => {
+            resolve(dado); // Resolva a Promise com o dado coletado
+        });
+    });
 }
 
 
 
+console.log("digite um nome")
+const teste1 = await coleta()
+console.log("digite a idade")
+const teste2 = await coleta()
+console.log("nome "+ teste1+ "    idade :" +teste2)
 
 
 
@@ -50,5 +55,4 @@ function CalculoFatorial(numero){
     return resultado
 }
 
-console.log(CalculoFatorial(5))
 
