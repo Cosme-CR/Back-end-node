@@ -9,11 +9,49 @@
  
 
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//VALIDAÇÂO TABUADA
+
+
+
+
+function VVazioTabuada(n1,n2,n3,n4){
+    let retorno
+
+    if(n1 !="" && n2 !="" && n3 !="" && n4 !=""){
+        retorno = true
+    }else{
+        retorno =false
+    }
+    return retorno
+
+}
+
+
+function VNumTabuada(n1,n2,n3,n4){
+    
+    let retorno
+
+    if(!isNaN(n1) && !isNaN(n2) && !isNaN(n3) && !isNaN(n4)){
+        retorno = true
+    }else{
+        retorno =false
+    }
+    return retorno
+}   
+  
+
+
+
+
+
+
+
 
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////validação da universidade
-//
+//VALIDA UNIVERSIDADE 
 
 
 function validaUniversidade(nomProfe,nomAluno,sexoProf,sexoAlun,nomCurso,materia,n1,n2,n3,n4){
@@ -34,9 +72,6 @@ function validaUniversidade(nomProfe,nomAluno,sexoProf,sexoAlun,nomCurso,materia
 
 
 }
-
-
-
 
 
 function validaVazioUniverdade(nomProfe,nomAluno,sexoProf, sexoAlun,nomCurso, materia,n1,n2,n3,n4){
