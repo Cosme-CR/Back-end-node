@@ -13,9 +13,27 @@
 //VALIDAÇÂO TABUADA
 
 
+function validaTabuada(tComeco, tFim, nComeco, nFim){
+    
+    let validaVazio  = ValidaVazioTabuada(tComeco,tFim,nComeco,nFim)
+    let validaNumero = ValidaNumTabuada(tComeco,tFim,nComeco,nFim)
+    let validaRange  = VRangeTabuada(tComeco, tFim, nComeco, nFim)
+    let retorno
 
 
-function VVazioTabuada(n1,n2,n3,n4){
+    if(validaVazio && validaNumero && validaRange){
+        retorno = true
+    }else{
+        retorno = false
+    }
+    
+    return retorno
+
+}
+
+
+
+function ValidaVazioTabuada(n1,n2,n3,n4){
     let retorno
 
     if(n1 !="" && n2 !="" && n3 !="" && n4 !=""){
@@ -28,7 +46,7 @@ function VVazioTabuada(n1,n2,n3,n4){
 }
 
 
-function VNumTabuada(n1,n2,n3,n4){
+function ValidaNumTabuada(n1,n2,n3,n4){
     
     let retorno
 
@@ -42,7 +60,30 @@ function VNumTabuada(n1,n2,n3,n4){
   
 
 
+function VRangeTabuada(Tinicio,Tfim,NComeco,NFim){
+    let TabuadaInicio = Number(Tinicio)
+    let TabuadaFim    = Number(Tfim)
+    let NumComeco     = Number(NComeco)
+    let NumFim        = Number(NFim)
+    let retorno
 
+    //  valida se o numero inicial é menor que o numero final
+    if(TabuadaInicio < TabuadaFim && NumComeco < NFim){
+        
+        // valida o range da tabuada 
+        if(TabuadaInicio >= 2 && TabuadaInicio <=100 && TabuadaFim >= 2 && TabuadaFim <=100){
+            
+            //valida o range do numero do calculo
+            if(NumComeco >= 1 && NumComeco <=50 && NumFim >=1 && NumFim <=50 ){
+                retorno = true
+
+            }else{retorno =false}
+        }else{ retorno = false}
+    }else{retorno = false}
+    
+    return retorno
+
+}
 
 
 
