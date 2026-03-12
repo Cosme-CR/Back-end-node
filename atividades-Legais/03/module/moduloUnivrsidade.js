@@ -6,19 +6,6 @@
 **************************************************************************/
 
 
-// importe da biblioteca
-const readline = require('readline');
-
-// cria objeto de entrada de dados 
-const entradaDeDados = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-});
- 
-
-
-
-
 function calculoMedia(n1,n2,n3,n4){
     let nota1 = Number(n1)
     let nota2 = Number(n2)
@@ -31,7 +18,7 @@ function calculoMedia(n1,n2,n3,n4){
     return media 
 
 }
-function geral(medi, nomProfe, nomAluno, sexoProf, sexoAlun, nomCurso, materia, n1, n2, n3, n4) {
+function geral(ntf, medi, nomProfe, nomAluno, sexoProf, sexoAlun, nomCurso, materia, n1, n2, n3, n4) {
     let media = Number(medi);
     let nomeProfessor = nomProfe;
     let nomeAluno = nomAluno;
@@ -43,15 +30,16 @@ function geral(medi, nomProfe, nomAluno, sexoProf, sexoAlun, nomCurso, materia, 
 
     switch (classificacao) {
         case "RECUPERAÇÃO":
-            entradaDeDados.question("Digite a nota do Exame: ", function(notaexa) {
-                let nota = Number(notaexa);
+            //nota final doexame
+            let nota = Number(ntf)
 
-                if (notaexa != "" && !isNaN(notaexa) && nota >= 0 && nota <= 100) {
+                if (ntf != "" && !isNaN(ntf) && nota >= 0 && nota <= 100) {
                     let mediaFinal = ((nota + media) / 2);
                     let status = mediaFinal >= 60 ? "APROVADO" : "REPROVADO";
     
                     console.log(`${sexoAluno} ${nomeAluno} foi ${status} na Disciplina ${materia}`);
                     console.log("Curso: " + nomeCurso);
+                    console.log(sexoProfessor+ nomeProfessor)
                     console.log(`Notas: ${n1}, ${n2}, ${n3}, ${n4}`);
                     console.log("Média Inicial: " + media);
                     console.log("Média Final (com Exame): " + mediaFinal);
@@ -60,22 +48,23 @@ function geral(medi, nomProfe, nomAluno, sexoProf, sexoAlun, nomCurso, materia, 
                 }
 
 
-            });
+            
             break;
 
         case "APROVADO":
-            exibirRelatorio(sexoAluno, nomeAluno, "APROVADO", materia, nomeCurso, n1, n2, n3, n4, media, "Não Necessário");
+            exibirRelatorio(sexoAluno, nomeAluno, "APROVADO", materia,sexoProfessor, nomeProfessor, nomeCurso, n1, n2, n3, n4, media, "Não Necessário");
             break;
 
         case "REPROVADO":
-            exibirRelatorio(sexoAluno, nomeAluno, "REPROVADO", materia, nomeCurso, n1, n2, n3, n4, media, "Não Apto");
+            exibirRelatorio(sexoAluno, nomeAluno, "REPROVADO", materia,sexoProfessor, nomeProfessor, nomeCurso, n1, n2, n3, n4, media, "Não Apto");
             break;
     }
 }
 
 // Função auxiliar para evitar repetição de código 
-function exibirRelatorio(sexo, nome, status, materia, curso, n1, n2, n3, n4, media, exame) {
+function exibirRelatorio(sexo, nome, status, materia, sexoProfessor, nomeProfessor, curso, n1, n2, n3, n4, media, exame) {
     console.log(`${sexo} ${nome} foi ${status} na Disciplina ${materia}`);
+    console.log(sexoProfessor+ nomeProfessor)
     console.log("Curso: " + curso);
     console.log(`Notas: ${n1}, ${n2}, ${n3}, ${n4}`);
     console.log("Média Final: " + media);
@@ -129,7 +118,7 @@ function sexoProfe(tipo){
     let retorno
 
     if(tipo == "masculino"){
-        retorno = "Professor "
+        retorno = "Professor: "
 
     }else{
         retorno = "Professora: "
@@ -139,3 +128,7 @@ function sexoProfe(tipo){
 }
 
 
+module.exports = {
+    calculoMedia,
+    geral
+}

@@ -33,4 +33,7 @@ function calculoTabuada(tInicio, tFinal, ncomeco,nfinal){
         inicioT++
     }
 }
-calculoTabuada(3,15,0,15)
+
+module.exports = {
+    calculoTabuada
+}
