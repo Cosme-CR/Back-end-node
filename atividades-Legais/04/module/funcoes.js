@@ -1,30 +1,89 @@
+
+
+// pega a lista do outro arquivo
 const objL = require("./estadocidade.js")
 
-//console.log(objL.listaDeEstados.sigla)
 
-
-
-//objL.listaDeEstados.estados.forEach(function(teste){
-//    console.log(teste.sigla)
-//})
-
-console.log("inicio prog")
-
-
-//function getEstadoRegiao(regiao){
-    
-//}
-
-
-function getEstadoRegiao (sg){
+function getCidades (busca){
     // obj que sera o retorno
-    let retorno = {regiao:sg, estados:[]}
+    let retorno = {}
+    // vetor que recebera as cidades 
+    let cidad   = []
+    // contador pra saber a qnt de cidades
+    let cont    = 0
+    let statu   = false
+    
+    //percorre o vetor estado 
+    for(let estad of objL.listaDeEstados.estados){
+
+        //verifica se no obj que esta no vetor tem o vetor capital_pais
+        if(estad.sigla.toUpperCase() ==  busca.toUpperCase()) {
+            
+            for( let cdd of estad.cidades){
+                cidad.push(cdd.nome)
+                cont++
+            }
+
+            retorno.uf                     =estad.sigla
+            retorno.descricao              =estad.nome
+            retorno.quantidade_cidades     =cont
+            retorno.cidades                =cidad
+
+            statu = true
+        }
+    }
+
+    if(statu){
+        return retorno
+    }else{ return false }
+}
+
+console.log(getCidades("AC"))
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+function getCapitalPais (){
+    // obj que tem o vetor que sera o retorno
+    let retorno = {capitais:[]}
+    let statu = false
+    
+    //percorre o vetor estado 
+    for(let estad of objL.listaDeEstados.estados){
+
+        //verifica se no obj que esta no vetor tem o vetor capital_pais
+        if(estad.capital_pais) {
+                //coloca os itens dentro do vetor que esta no obj
+            retorno.capitais.push({
+                capital_atual:              estad.capital_pais.capital,
+                uf:                         estad.sigla,
+                descricao:                  estad.nome,
+                capital:                    estad.capital,
+                regiao:                     estad.regiao,
+                capital_pais_ano_inicio:    estad.capital_pais.ano_inicio,
+                capital_pais_ano_Termino:   estad.capital_pais.ano_fim
+
+            })
+              
+            statu = true
+        }
+    }
+
+    if(statu){
+        return retorno
+    }else{ return false }
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+function getEstadoRegiao (regiao){
+    // obj que sera o retorno
+    let retorno = {regiao:regiao, estados:[]}
     let statu = false
     
     //percorre o vetor estado 
     for(let estad of objL.listaDeEstados.estados){
         //se a regiao for igual o parametro da funcao  vai entrar aqui
-        if(estad.regiao .toLowerCase() == sg.toLowerCase()){
+        if(estad.regiao .toLowerCase() == regiao.toLowerCase()){
             //console.log(estad.capital)
             //emcada loop que entrar no if vai criar um obj dentro do vetor
             retorno.estados.push({uf: estad.nome, descricao: estad.nome})
@@ -36,8 +95,6 @@ function getEstadoRegiao (sg){
         return retorno
     }else{ return false }
 }
-console.log(getEstadoRegiao("SUL"))
-
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
