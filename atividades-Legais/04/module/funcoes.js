@@ -38,7 +38,7 @@ function getCidades (busca){
     }else{ return false }
 }
 
-console.log(getCidades("AC"))
+console.log(getCidades("xablau"))
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -169,4 +169,12 @@ function getListaDeEstado(){
     return retorno
 }
 
+module.exports={
+    getCapitalEstado,
+    getCapitalPais,
+    getCidades,
+    getDadosEstado,
+    getEstadoRegiao,
+    getListaDeEstado,
 
+}
