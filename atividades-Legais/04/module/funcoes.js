@@ -176,5 +176,5 @@ module.exports={
     getDadosEstado,
     getEstadoRegiao,
     getListaDeEstado,
-
+    
 }
